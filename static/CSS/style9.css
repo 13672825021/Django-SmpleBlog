@@ -1,0 +1,176 @@
+	*, *:before, *:after {  -webkit-box-sizing: border-box;  -moz-box-sizing: border-box;  box-sizing: border-box;  }
+        *, a:link, a:visited, a:hover, a:active { text-decoration: none;font-family: ו;  }
+        ul,li,body,div,span,a,dl,dd{list-style:none;padding:0;margin:0;font-family: 'Microsoft YaHei';  font-weight: normal;}
+        body{height:100%;width:100%;}
+		/*background: #E7ECEF;*/
+        .all{height:100%;width:100%;}
+        .header{height:50px;width:100%;background: #48525E;}
+        .centerheader{height:100%;width:1170px;margin: 0 auto;}
+        .logo{display: inline-block;margin-right:900px;}
+        .logo #logo{font-family: STXingkai;color: crimson;font-size: 40px;}
+        .logo #tit{font-family:STKaiti;font-size: 25px;color:#CFD0D2}
+        .net{display: inline-block;margin-right:0;}
+        .net a{color:#CFD0D2;font-size: 14px;}
+        .header2{height:50px;width:100%;background: #FFFFFF;}
+        .centerheader2{height:100%;width:1170px;margin: 0 auto;}
+
+        .nav{float:left;}
+        .nav li{float: left;  margin-right: 28px;}
+        .nav li a{    padding-bottom: 0px;  line-height: 50px;  padding-left: 6px;  padding-right: 6px;  display: block;
+            float: left;  height: 50px;  color: #727272;  font-size: 16px;  padding-top: 0px}
+        .nav li.active a{border-bottom: #dc3c00 3px solid;  background-color: transparent;  text-decoration: none;}
+        .nav li a:hover{border-bottom: #dc3c00 3px solid;  background-color: transparent;  text-decoration: none;}
+        .search{padding-top: 15px;padding-bottom: 15px;margin-left:900px;}
+        .search input{line-height: 20px;}
+        	img{
+			max-width:150px;
+			max-height:200px;
+		}
+
+		#container{
+			position:relative;
+			max-width:1200px;
+			min-width:650px;
+			min-height: 700px;
+			max-height: 900px;
+			margin:0 auto;
+			border-left:solid 0.5px;
+			border-right:solid 0.5px;
+			background:#FFFFFF ;
+			border:grey solid;
+		}
+/* 		.header,.header2{display:none;} */
+		#header3{
+			position:relative;
+			max-width:1200px;
+			min-width:650px;
+			height:100px;
+			margin:0 auto;
+			overflow:hidden;
+		}
+		#h-title{
+			font-size:2em;
+			font-weight:bold;
+			font-family:KaiTi;
+			color:white;
+			margin:30px 0 0 10px;
+		}
+		#l-aside{
+			float:left;
+			width:220px;
+			min-height:500px;
+		}
+		#l-title{
+			background:linear-gradient(to right,darkblue 0%, white 50% ,darkblue 100%);
+			height:30px;
+			line-height:30px;
+		}
+		#l-title>a{
+			font-size:1.1em;
+		}
+		#l-img{
+			margin:10px 0 0 30px;
+		}
+		#l-c1{margin:5px 0 0 60px;}
+		#l-c1>a{text-decoration:none;}
+		#l-c2 ,#l-c4{margin:10px 0 0 45px; }
+		#l-c3 ,#l-c5{margin:10px 0 0 55px;}
+		#l-c3>a,#l-c5>a{text-decoration:none;}
+		#l-c6,#l-c7{
+			margin:10px 0 0 45px;
+			font-size:0.8em;
+		}
+		#l-c8{margin:20px 0 0 45px; font-size:1em;}
+		#l-c9{
+			font-size:0.8em;
+			margin:5px 0 0 20px;
+		}
+		#main-title {
+			margin:0;
+			height:30px;
+			width:1199px;
+			background-color:grey;
+		}
+		#main-title li a:hover{border-bottom: purple 3px solid;  background-color: transparent;  text-decoration: none;}
+		#main-title ul li{
+			float:left;
+			list-style:none;
+			margin: 5px 10px 0 40px;
+		}
+		#main-title ul li a{
+			text-decoration:none;
+			font-size:1.2em;
+			color:black;
+		}
+
+		#Item{
+			text-indent:0em;
+		}
+		#blog-title>a{
+			text-decoration:none;
+			color:black;
+			font-size:1.3em;
+		}
+		#blog-introduction{
+			font-size:0.85em;
+			color:grey;
+		}
+		#blog-lowerright{
+			text-align:right;
+			font-size:0.8em;
+			color:grey;
+		}
+
+		#submit_btn {margin:0 10px 0 40px;}
+		#emoji_row{position:relative;}
+		#emojis{text-align:right;position:absolute;top:-15px;right:50px;}
+		h1{
+			text-indent:0em;
+			font-size:1.5em;
+		}
+		.clear {clear:both; }
+		#footer{
+			max-width:1200px;
+			min-width:650px;
+			background-color:grey;
+			text-align:center;
+			margin:0 auto;
+			padding:0;
+			border:solid grey;
+		}
+
+		#maintext{
+			 width:900px;
+			 height:500px;
+			 border:solid black 1px;
+			 overflow:scroll;
+		}
+		#maintitle{
+			width:900px;
+			height:20px;
+			border:solid black 1px;
+		}
+		#d_image_upload{
+			position:absolute;
+			bottom:35px;
+			left:0;
+			width:70px;
+			overflow:hidden;
+			opacity: 0;
+			border:solid red 1px;
+		}
+		#d_file_upload{
+			width:70px;
+			overflow:hidden;
+		}
+		#btn1{
+			width:70px;
+			height:22px;
+		}
+		#submit_btn1,#submit_btn1{
+			margin:10px 5px 10px 250px;
+		}
+		#file_form{
+			margin:10px 0 0 0;
+			font-size:0.85em;
+		}

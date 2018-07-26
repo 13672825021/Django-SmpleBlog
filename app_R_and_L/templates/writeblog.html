@@ -1,0 +1,121 @@
+{% extends 'base.html' %}
+{% block link_or_css %}
+  <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+  <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
+  <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css" rel="stylesheet">
+
+        <link rel="stylesheet" type="text/css" href="/static/CSS/button.css" />
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>
+    <style>
+        .maincontent{
+            max-width:1200px;
+			min-width:650px;
+            margin: 10px auto;
+        }
+        .container{
+            margin:0 auto;
+        }
+        #edit_title{
+            margin:0 auto 0 0;
+            border:black solid 0.5px;
+            width:600px;
+            height:38px;
+            font-size: 1.7em;
+            background: white;
+        }
+
+    </style>
+{% endblock %}
+{% block content %}
+{#https://www.cnblogs.com/kenhome/p/7743394.html#}
+    <div class="container">
+
+
+        <div class="maincontent">
+            <p style="color:white;">标题：</p>
+            <div contenteditable="true" id="edit_title" ></div>
+            <br>
+
+            <div>
+                <input type="file" name="external_file" id="external_file" style="float:right;color:white;"onchange="FileUpload()">
+                <p style="color:white;float:right;">上传附件：</p>
+            </div>
+            <p style="color:white;">正文：</p>
+
+            <div id="summernote"></div>
+{#            <button id="publish_blog"style="float:left">发表博客</button>#}
+            <a id="publish_blog" class="button"  href="javascript:void(0);" onclick="publish()">发表博客</a>
+        </div>
+
+	</div>
+	 <script>
+        function FileUpload() {
+            var form_data = new FormData();
+            var file_info =$( '#external_file')[0].files[0];
+            form_data.append('file',file_info);
+            //if(file_info==undefined)暂且不需要判断是否有附件
+                //alert('你没有选择任何文件');
+                //return false
+            $.ajax({
+                url:'/uploadblogfile/',
+                type:'POST',
+                data: form_data,
+                processData: false,  // tell jquery not to process the data
+                contentType: false, // tell jquery not to set contentType
+                success: function(callback) {
+                    alert(callback)
+                },
+                error:function(){
+                    alert("附件上传失败");
+                 }
+            });
+        }
+		$(document).ready(function() {
+			$('#summernote').summernote({   //初始化并配置summernote
+			  height: 600,                 // 定义编辑框高度
+			  minHeight: 300,             // 定义编辑框最低的高度
+			  maxHeight: 1000,             // 定义编辑框最高德高度
+              focus: true,
+              callbacks: {
+                    onImageUpload: function(files) { //the onImageUpload API
+                        img = sendFile(files[0]);
+                     }
+               }
+			});
+		});
+
+		function publish() {
+		    alert('进入publish函数');
+            var title = $('#edit_title').html();
+            var markupStr = $('#summernote').summernote('code');
+            $.post("/writeblog/",{'blog_title':title,'blog_content':markupStr}, function(ret){
+                alert(ret);
+                $('#edit_title').html('');
+                $('#summernote').summernote('reset');
+            })
+        }
+
+		
+        function sendFile(file) {
+            data = new FormData();
+            data.append("file", file);
+            console.log(data);
+            $.ajax({    //用jQuery从前端向后台传输文件
+                data: data,
+                type: "POST",
+                url: '/uploadblogpic/',
+                cache: false,
+                contentType: false,// 告诉jQuery不要去设置Content-Type请求头
+                processData: false,// 告诉jQuery不要去处理发送的数据
+                success: function (pictureurl) {
+                    $("#summernote").summernote('insertImage', pictureurl); // the insertImage API
+                },
+                 error:function(){
+                    alert("上传失败");
+                 }
+            });
+        }
+
+	</script>
+{% endblock %}

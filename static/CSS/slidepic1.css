@@ -1,0 +1,65 @@
+#slideMain {
+            width:800px;
+			margin:0 auto;
+        }
+        .slides {
+            width:800px;
+			height:320px;
+			position:relative;
+			overflow:hidden;
+        }
+        #p1,#p2,#p3{
+			min-width:800px;
+			min-height:320px;
+			position:absolute;
+        }
+		#oo{font-size:3em;}
+		#left-arrow{
+			height:80px;
+			width:33px;
+			background-image: url('/static/IMAGES/arrows-30.png');
+			background-repeat:no-repeat;
+			position:absolute;
+			left:10px;
+			top:120px;
+			display:none;
+		}
+		#right-arrow{
+			height:80px;
+			width:33px;
+			background-image: url('/static/IMAGES/arrows-30.png');
+			background-position:0px -80px;
+			background-repeat:no-repeat;
+			position:absolute;
+			right:10px;
+			top:120px;
+			display:none;
+		}
+		#point1{
+			width:12px;
+			height:12px;
+			background-image:url('/static/IMAGES/navigator.png');
+			position:absolute;
+			top:285px;
+			right:75px;
+		}
+		#point2{
+			width:12px;
+			height:12px;
+			background-image:url('/static/IMAGES/navigator.png');
+			position:absolute;
+			top:285px;
+			right:63px;
+		}
+		#point3{
+			width:12px;
+			height:12px;
+			background-image:url('/static/IMAGES/navigator.png');
+			position:absolute;
+			top:285px;
+			right:50px;
+		}
+		.red{
+			background-image:url('/static/IMAGES/navigator.png');
+			background-position:0 -23px;
+		}

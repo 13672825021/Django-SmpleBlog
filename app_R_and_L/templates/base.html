@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="icon" href="/static/IMAGES/blog.png" type="image/x-icon"/>
+    {% block link_or_css %}{% endblock %}
+    <title>{% block title %}{% endblock %}Naive博客</title>
+</head>
+<body>
+
+{% include 'nav.html' %}
+
+{% block content %}
+<div>这里是默认内容，所有继承自这个模板的，如果不覆盖就显示这里的默认内容。</div>
+{% endblock %}
+
+{#{% include 'bottom.html' %}#}
+{# #}
+{#{% include 'tongji.html' %}#}
+
+</body>
+</html>

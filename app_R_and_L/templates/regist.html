@@ -1,0 +1,42 @@
+{#<!DOCTYPE html>#}
+{#<html lang="en">#}
+{#<head>#}
+{#    <meta charset="UTF-8">#}
+{#    <title>注册页面</title>#}
+{#</head>#}
+{#<style>#}
+{##}
+{#</style>#}
+{#<body>#}
+{#    <h1>注册页面</h1>#}
+{#    <form method='post'>#}
+{#        {% csrf_token %}#}
+{#        {{ userform }}#}
+{#        <input type="submit" value="注册"/>#}
+{#    </form>#}
+{#</body>#}
+{#</html>#}
+
+
+{% extends 'base.html' %}
+{% block link_or_css %}
+    <link href="/static/CSS/login4.css" rel="stylesheet"  />
+{% endblock %}
+{% block title %}登录页面{% endblock %}
+
+{% block content %}
+    <div class="Form">
+			<h2 class="FormTitle">Sign Up</h2>
+			<form action="/regist/" method="post">
+                    {% csrf_token %}
+					<br>用户名:<br><input type="text" name="Username" placeholder="Username" required=""  autocomplete="off"/>
+					<br>密码:<br><input type="password" name="Password" placeholder="Password" required="" />
+					<br>确认密码:<br><input type="password" name="RePassword" placeholder="Confirm Password" required="" />
+                    <br>邮箱:<br><input type="text" name="Email" placeholder="Email" required="" autocomplete="off"/><br>
+                {{ message }}
+				<div class="FormSubmit">
+					<input type="submit" value="注册">
+				</div>
+			</form>
+    </div>
+{% endblock %}

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/static/CSS/style9.css">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css">
+    <title>Title</title>
+    <style>
+    </style>
+</head>
+<body>
+<script>
+     window.onload= function(){
+         var container=document.createElement("div");
+         container.setAttribute("id","container");
+         var content=document.createElement("div");
+         content.setAttribute("id","content1");
+         var blog_lowerright0=document.createElement("div");
+         blog_lowerright0.setAttribute("id","blog-lowerright0");
+         var fa_file=document.createElement("i");
+         fa_file.setAttribute("class","fa fa-file");
+         fa_file.setAttribute("aria-hidden","true");
+         var external_file=document.createTextNode("附件:")
+         blog_lowerright0.appendChild(fa_file);
+         blog_lowerright0.appendChild(external_file);
+
+         var blog_lowerright=document.createElement("div");
+         blog_lowerright.setAttribute("id","blog-lowerright");
+
+         var fa_trash=document.createElement("i");
+         fa_trash.setAttribute("class","fa fa-trash");
+         fa_trash.setAttribute("aria-hidden",'true');
+         var deleteblog=document.createElement("a");
+         deleteblog.innerHTML="删除博客(没时间实现)";
+         deleteblog.setAttribute("href","/index/");
+         deleteblog.setAttribute("style","color:grey;");
+
+         var fa_thumbs_up=document.createElement("i");
+         fa_thumbs_up.setAttribute("class","fa fa-thumbs-up");
+         fa_thumbs_up.setAttribute("aria-hidden",'true');
+         var praise=document.createTextNode("赞:");
+
+         var fa_thumbs_down=document.createElement("i");
+         fa_thumbs_down.setAttribute("class","fa fa-thumbs-up");
+         fa_thumbs_down.setAttribute("aria-hidden",'true');
+         var oppose=document.createTextNode("踩:");
+
+         var fa_calenda=document.createElement("i");
+         fa_calenda.setAttribute("class","fa fa-calendar");
+         fa_calenda.setAttribute("aria-hidden",'true');
+         var date=document.createTextNode("创作日期:");
+
+         blog_lowerright.appendChild(fa_trash);
+         blog_lowerright.appendChild(deleteblog);
+         blog_lowerright.appendChild(fa_thumbs_up);
+         blog_lowerright.appendChild(praise);
+         blog_lowerright.appendChild(fa_thumbs_down);
+         blog_lowerright.appendChild(oppose);
+         blog_lowerright.appendChild(fa_calenda);
+         blog_lowerright.appendChild(date);
+
+         content.appendChild(blog_lowerright0);
+         content.appendChild(blog_lowerright);
+         container.appendChild(content);
+         document.body.appendChild(container);
+     }
+
+         </script>
+{#<div id="content" >#}
+{#             	<br>#}
+{#             	<div id="blog-lowerright0">#}
+{#             		<i class="fa fa-file" aria-hidden="true"></i><a> 附件:</a>#}
+{#             	</div>#}
+{#             	<div id="blog-lowerright">#}
+{#             	<i class="fa fa-trash" aria-hidden="true"></i><a href="#" style="color:grey;">删除博客</a>#}
+{#                <i class="fa fa-thumbs-up" aria-hidden="true"></i><a>赞:<%= Blog.get(i).get("likes")%> </a>#}
+{#                <i class="fa fa-thumbs-down" aria-hidden="true"></i><a>踩:<%= Blog.get(i).get("dislikes")%> </a>#}
+{#                <i class="fa fa-calendar" aria-hidden="true"></i><a> 创作日期:<%= Blog.get(i).get("date")%></a>#}
+{#             	</div><br>#}
+{#             <%}%>#}
+{#        	<div id="page_jump">#}
+{#	            <a href="Tabpage.jsp?pgno=0&pgcnt=<%=pgcnt%>">首页</a>#}
+{#	            <a href="Tabpage.jsp?pgno=<%= pgprev%>&pgcnt=<%=pgcnt%>">上一页</a>#}
+{#				<a href="Tabpage.jsp?pgno=<%= pgnext%>&pgcnt=<%=pgcnt%>">下一页</a>#}
+{#				<a href="Tabpage.jsp?pgno=-1&pgcnt=<%=pgcnt%>">尾页</a>#}
+{#			</div>#}
+{#    </div>#}
+</body>
+</html>

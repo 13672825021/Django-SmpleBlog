@@ -1,0 +1,5 @@
+string PHYNAME[3];//三种物理机的名字 
+double PHYCPU[3];//三种物理机的CPU容量 
+double PHYMEM[3];//三种物理机的MEM容量 
+double PHYCdM[3];//不同物理机规格的CPU/MEM 
+int PHY_TYPE_CNT=0;//有多少种物理机 

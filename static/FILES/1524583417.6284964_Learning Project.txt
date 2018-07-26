@@ -1,0 +1,39 @@
+这样漫无目的的看两个pdf也没什么效率，不如制定个计划，强制性提高速率。
+
+today 3/17
+java进度 62/688
+Linux进度 230/477
+
+
+
+3/18  java 100  Linux  250
+
+3/19 Monday java 120  Linux  270
+
+3/20 Tuesday java 150 Linux 300
+
+3/21 Wednesday Linux 340
+
+3/22 Thursday java 180
+
+3/23 Friday java 200 Linux 370
+
+
+
+3/22 改变策略，不看java了，复习C++、数据结构和算法方面
+C++就看C++ primer   做课后习题
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

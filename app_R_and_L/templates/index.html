@@ -1,0 +1,307 @@
+{% extends 'base.html' %}
+{% block link_or_css %}
+<link rel="stylesheet" href="/static/CSS/slidepic1.css">
+    <style>
+
+         #blog{
+             width: 1000px;
+             overflow: hidden;
+             margin: 0 auto;
+             margin-top: 20px;
+         }
+         #blog ul{
+            list-style-type: none;
+         }
+         #blog ul li{
+             background-color: white;
+             padding: 20px;
+             width: 100%;
+             {#height:200px;#}
+             overflow: hidden;
+             margin-top: 15px;
+         }
+         .blog-left{
+             float: left;
+             width: 680px;
+             overflow: hidden;
+         }
+        .title{
+             text-decoration:none;
+             font-size: 26px;
+         }
+         .blog-left p{
+            color: gray;
+         }
+         .blog-left img{
+             width: 20px;
+             margin-right: 10px;
+             vertical-align: middle;
+         }
+        .page{
+             height: 40px;
+             margin-top: 10px;
+            margin-bottom: 10px;
+             text-align: center;
+             padding-top: 20px;
+         }
+         .page a{
+             border: 1px solid #71b0bb;
+             text-decoration: none;
+             margin: 5px;
+             padding: 5px 10px;
+         }
+         .page a:link,.page a:visited{
+            color: #fff;
+         }
+         .page a:hover,.page a:active{
+             color: #FFF;
+             background-color: #bbac5c;
+         }
+        #bottom{
+             width:100%;
+             background-color:#323333;
+             height:200px;
+             margin-top:70px;
+         }
+         #bottom-content{
+             width:1000px;
+             overflow:hidden;
+             margin:0 auto;
+             color:white;
+             height:200px;
+         }
+
+         #bottom-content p{
+            margin-top:10px;
+         }
+    .js-load-more{
+    padding:0 15px;
+    width:120px;
+    height:30px;
+    background-color:#D31733;
+    color:#fff;
+    line-height:30px;
+    text-align:center;
+    border-radius:5px;
+    margin:20px auto;
+    border:0 none;
+    font-size:16px;
+    display:none;/*默认不显示，ajax调用成功后才决定显示与否*/
+}
+    </style>
+{% endblock %}
+{% block content %}
+
+      <div id="slideMain">
+         <div id="slides" class="slides">
+              <img id="p1" src="/static/IMAGES/b0.jpg" >
+               <img id="p2" src="/static/IMAGES/ditf0.png">
+			  <img id="p3" src="/static/IMAGES/ditf1.png" >
+			   <div id="left-arrow" ></div>
+         		<div id="right-arrow"></div>
+         		 <div id="point1"></div>
+         		<div id="point2"></div>
+         		<div id="point3"></div>
+         </div>
+      </div>
+      <script>
+	        var run=true;
+	      	var right1=0,right2=-800,right3=-1600;//三张图片的初始位置
+	      	var slides=document.getElementById("slides");
+	        var p1=document.getElementById("p1");
+	        var p2=document.getElementById("p2");
+     		var p3=document.getElementById("p3");
+     		var left_arrow=document.getElementById("left-arrow");
+     		var right_arrow=document.getElementById("right-arrow");
+     		var point1=document.getElementById("point1");
+     		var point2=document.getElementById("point2");
+     		var point3=document.getElementById("point3");
+     		slides.onmouseover=stop;
+     		slides.onmouseout=start;
+         	window.setTimeout(move,1);//一进入网页就开始幻灯片播放
+
+     		function start(){//鼠标不在框内，图片滑动
+     			run=true;
+     			right_arrow.style.display="none";
+     			left_arrow.style.display="none";
+     		}
+	        function stop(){//鼠标在框内，图片静止
+	        	run=false;
+     			right_arrow.style.display="block";
+     			left_arrow.style.display="block";
+	        }
+
+         	function move(){
+         		var short_pause=false;
+         		if(run==true){
+         			if(right1<800)  right1=right1+4;
+             		else{//图1已经完全左移出框外
+             			right1=-1600;short_pause=true;
+             			rubify_point2();
+             		}
+         			if(right2<800)  right2=right2+4;
+             		else {//图2已经完全左移出框外
+             			right2=-1600;short_pause=true;
+             			rubify_point3();
+             		}
+         			if(right3<800)  right3=right3+4;
+             		else {//图3已经完全左移出框外
+             			right3=-1600;short_pause=true;
+             			rubify_point1();
+             		}
+         		}
+         		show_pos();
+         		if(short_pause==true) window.setTimeout(move,2000);
+         		else window.setTimeout(move,1);
+         	}
+         	left_arrow.onclick=function(){//点击右箭头，显示上一张图片
+         		if(right1>=0&&right1<800){//当图1在框内静止或向左滑动时，显示图3
+         			right1=-800;right2=-1600;right3=0;rubify_point3();
+         		}
+         		else if(right1>=-1600&&right1<-800){//当图2在框内静止或向左滑动时，显示图1
+         			right1=0;right2=-800;right3=-1600;rubify_point1();
+         		}
+         		else if(right1>=-800&&right1<0){//当图3在框内静止或向左滑动时，显示图2
+         			right1=-1600;right2=0;right3=-800;rubify_point2();
+         		}
+         		show_pos();
+         	}
+            right_arrow.onclick=function(){//点击右箭头，显示下一张图片
+         		if(right1>=0&&right1<800){//当图1在框内静止或向左滑动时，显示图2
+         			right1=-1600;right2=0;right3=-800;rubify_point2();
+         		}
+         		else if(right1>=-1600&&right1<-800){//当图2在框内静止或向左滑动时，显示图3
+         			right1=-800;right2=-1600;right3=0;rubify_point3();
+         		}
+         		else if(right1>=-800&&right1<0){//当图3在框内静止或向左滑动时，显示图1
+         			right1=0;right2=-800;right3=-1600;rubify_point1();
+         		}
+         		show_pos();
+         	}
+            point1.onclick=function(){
+            	right1=0;right2=-800;right3=-1600;
+            	rubify_point1();
+            	show_pos();
+            }
+            point2.onclick=function(){
+            	right1=-1600;right2=0;right3=-800;rubify_point2();
+            	show_pos();
+            }
+            point3.onclick=function(){
+            	right1=-800;right2=-1600;right3=0;rubify_point3();
+            	show_pos();
+            }
+            function show_pos(){//下面三个代码改变图片位置
+            	p1.setAttribute("style", "right:"+right1+"px;");
+         		p2.setAttribute("style", "right:"+right2+"px;");
+         		p3.setAttribute("style", "right:"+right3+"px;");
+            }
+            //下面三个函数通过设置class属性和移除class属性让对应的point变红色
+            function rubify_point1(){point1.setAttribute("class", "red");point2.removeAttribute("class");point3.removeAttribute("class");}
+            function rubify_point2(){point2.setAttribute("class", "red");point1.removeAttribute("class");point3.removeAttribute("class");}
+            function rubify_point3(){point3.setAttribute("class", "red");point2.removeAttribute("class");point1.removeAttribute("class");}
+         </script>
+
+
+
+<div id="blog">
+     <ul id="blogul">
+
+     </ul>
+<!--加载更多按钮-->
+    <div class="js-load-more">加载更多</div>
+
+{#    <div class="page">#}
+{#        <a href="javascript:void(0);" onclick="firstpage()">首页</a> <a href="#">上一页</a> <a href="#">下一页</a> <a href="#">尾页</a>#}
+{#     </div>#}
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+<script>
+
+    $(function(){
+
+        /*初始化*/
+        var counter = 0; /*计数器*/
+        var pageStart = 0; /*offset*/
+        var pageSize = 4; /*size*/
+
+        /*首次加载*/
+        getData(pageStart, pageSize);
+
+        /*监听加载更多*/
+        $(document).on('click', '.js-load-more', function(){
+            counter ++;
+            pageStart = counter * pageSize;
+
+            getData(pageStart, pageSize);
+        });
+    });
+    function getData(offset,size){
+    $.ajax({
+        type: 'GET',
+        url: '/index1/',
+        dataType: 'json',
+        success: function(reponse){
+            {#alert(reponse.blogtitlelist)#}
+
+            var sum = reponse.blogtitlelist.length;
+
+            var result = '';
+
+            /****业务逻辑块：实现拼接html内容并append到页面*********/
+
+            //console.log(offset , size, sum);
+
+            /*如果剩下的记录数不够分页，就让分页数取剩下的记录数
+            * 例如分页数是5，只剩2条，则只取2条
+            *
+            * 实际MySQL查询时不写这个不会有问题
+            */
+            if(sum - offset < size ){
+                size = sum - offset;
+            }
+
+            /*使用for循环模拟SQL里的limit(offset,size)*/
+            for(var i=offset; i< (offset+size); i++){
+                result +='<li>'
+                    +'<div class="blog-left"> ' +
+                    '<p ><a href="/detail/" class="title">'+reponse.blogtitlelist[i]+'</a></p>'+
+                    '<p style="margin-top: 20px">'+reponse.blogintroductionlist[i]+   '</p>'+
+                        '<p style="margin-top: 40px"><img src="http://img.php.cn/upload/course/000/000/004/58170f99f2430105.png" >'+reponse.authorname[i]+
+                        '<img src="http://img.php.cn/upload/course/000/000/004/58170fbda3f34844.png" style="margin-left: 20px">'+reponse.publishtime[i]+
+                    '</p></div></li>';
+            }
+
+            $('#blogul').append(result);
+
+            /*******************************************/
+
+            /*隐藏more按钮*/
+            if ( (offset + size) >= sum){
+                $(".js-load-more").hide();
+            }else{
+                $(".js-load-more").show();
+            }
+        },
+        error: function(xhr, type){
+            alert('Ajax error!');
+        }
+    });
+}
+</script>
+
+
+</div>
+
+<div id="bottom">
+     <div id="bottom-content">
+             <p><img src="http://img.php.cn/upload/course/000/000/004/58170ff175fc3142.jpg" height="15px"></p>
+             <p> 网站位置 | 关于我 | 意见反馈 |</p>
+             <p>友情链接：无</p>
+             <p>中山大学 | 东苑</p>
+             <p>个人邮箱：zhongzhh8@mail2.sysu.eud.cn</p>
+
+
+     </div>
+</div>
+
+{% endblock %}

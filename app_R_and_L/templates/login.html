@@ -1,0 +1,39 @@
+
+
+{#{% extends 'base.html' %}#}
+{##}
+{#{% block title %}登录页面{% endblock %}#}
+{##}
+{#{% block content %}#}
+{#    <h1>Welcome!</h1>#}
+{#    <p>请登录</p>#}
+    {#     把method写成type了。。。#}
+{#    <form method='post'>#}
+{#        {% csrf_token %}#}
+{#        {{ userform }}#}
+{#        <input type="submit" value="登录"/>#}
+{#    </form>#}
+{#    <p>{{ message }}</p>#}
+{#    <a href="/regist">注册</a>#}
+{#{% endblock %}#}
+
+{% extends 'base.html' %}
+{% block link_or_css %}
+    <link href="/static/CSS/login4.css" rel="stylesheet"  />
+{% endblock %}
+{% block title %}登录页面{% endblock %}
+
+{% block content %}
+    <div class="Form">
+			<h2 class="FormTitle">请登录</h2>
+			<form action="/login/" method="post">
+                     {% csrf_token %}
+					<br>用户名:<br><input type="text" name="Username" placeholder="Username" required=""  autocomplete="off"/>
+					<br>密码:<br><input type="password" name="Password" placeholder="Password" required="" />
+                   <p style="font-size: 0.5em;color:red;">{{ message }}</p>
+				<div class="FormSubmit">
+					<input type="submit" value="登录">
+				</div>
+			</form>
+    </div>
+{% endblock %}

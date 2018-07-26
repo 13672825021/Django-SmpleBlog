@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {#    卧槽，原来还要不能写在下面这里面，要额外写script#}
+    <script src="/static/JS/jquery-3.3.1.js"> </script>
+{#    <script src="http://code.jquery.com/jquery-latest.js"></script> #}
+    <meta charset="UTF-8">
+    <title>主页_茵蒂克丝</title>
+</head>
+<style>
+</style>
+<body>
+
+    {%  if CurUserName == None %}
+        <a href="/login">登录 </a>
+        <a href="/regist"> 注册</a>
+    {% else %}
+        {{ CurUserName }} <a href="/logout"> 注销</a>
+    {% endif %}
+    <p>主页内容...</p>
+
+    <p>加法器</p>
+{#    我tm真是傻逼，把get写成post，结果当然取不到get的内容啊#}
+    <form action="/add/" method="get">
+        a:<input type="text" id="a" name="a"><br>
+        b:<input type="text" id="b" name="b"><br>
+        <p>result: <span id="add_result"></span></p>
+        <button type="button" id="sum_submit">计算</button>
+    </form>
+<script src="http://apps.bdimg.com/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $("#sum_submit").click(function(){
+                var a=$("#a").val();
+                var b=$("#b").val();
+                $.get("/add/",{'a':a,'b':b},function(response){
+                    $('#add_result').html(response) {#用 $(selector).html() 方法将结果显示在页面上#}
+                })
+            });
+        });
+    </script>
+
+    <br><br>
+    <form method='post'>
+        {% csrf_token %}
+        {{ commentform }}
+        <input type="submit" value="提交评论"/>
+    </form>
+    <p>{{ submit_message }}</p>
+
+    <script>
+        //js里想要使用view传过来的变量的话，必须使用json格式传输
+        var List={{ List|safe }};
+
+        {#$('#list').prepend(List[0]);#}
+        {#$('#List').append(List[1]);#}
+        console.log('遍历List')
+
+        for(var i in List){//输出索引
+            console.log(i);
+        }
+        for(var i=0;i<List.length;i++){//输出List内容
+            console.log(List[i]);
+        };
+
+        $.each(List,function(index,item){//同时输出索引和List的值
+            console.log(index);
+            console.log(item);
+        });
+
+        var Dict={{ Dict|safe }}
+        console.log("字典取值");
+        console.log(Dict['site']);
+        console.log(Dict.author);
+
+        console.log("遍历字典")
+        for(i in Dict){
+            console.log(i+':'+Dict[i]);//i为key DIct[i]为value
+        }
+
+        var Word={{ Word|safe }}
+        console.log(Word);
+
+        var Number={{ Number|safe }}
+        console.log(Number)
+
+    </script>
+
+    DEBUG: {{ settings.DEBUG }}
+
+    ip: {{ ip_address }}
+
+
+    <script src="/static/JS/indexJS.js"> </script>
+    <script>
+        $(function(){
+            $("p").dblclick(function () {
+                alarm();
+            })
+            $("#myname").css("background-color","pink")
+            $("#myname").hover (function () {
+                $("#myname").css("font-size","2em");
+            })
+            $("#myname").mouseleave (function () {
+                $("#myname").css("font-size","1em");
+            })
+        })
+    </script>
+
+    <div id="tryhide">TryHide</div>
+
+    <p id="myname">ACFUN！！！</p><br>
+    <button id="hidemyname">隐藏ACFUN</button>
+
+    <script type="text/javascript">
+        document.write("调用外部js文件失败");
+        $(document).ready(function(){
+            $("#tryhide").hide();
+        });
+        $(function(){
+            $("#hidemyname").click(function(){
+                $("#myname").hide();
+            });
+        });
+    </script>
+
+
+
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
